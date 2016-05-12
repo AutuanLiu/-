@@ -14,83 +14,83 @@ public class TestSql
 
 class Adm extends Frame
 {
-	Panel p1,p2,p3,p4,p5,p6,p7,p8,p9;   //  ·ÖÐÐÏÔÊ¾
+	Panel p1,p2,p3,p4,p5,p6,p7,p8,p9;   //  åˆ†è¡Œæ˜¾ç¤º
 	Label s1,s2,s3,s4,s5,c1,c2,c3,c4,sc1,sc2,sc3,mes,mes1,mes2,mes3,mes4;
 	TextField st1,st2,st4,st5,ct1,ct2,ct3,ct4,sct1,sct2,sct3;
 	TextArea msg;
 	CheckboxGroup table,sex;
 	Checkbox student,course,sc;
-	Checkbox m,w;   //·Ö±ð´ú±í  ÄÐ  Å®
-	Button b1,b2,b3,b4;  //  ·Ö±ðÎª   ²éÑ¯   ²åÈë  ÐÞ¸Ä    É¾³ý
-	Connection cn;   //ÓëÊý¾Ý¿âÁ¬½Ó
-	PreparedStatement cx,cr,xg,sg;  //  ·Ö±ðÎª   ²éÑ¯   ²åÈë  ÐÞ¸Ä    É¾³ý
-	String scx,scr,sxg,ssc,ssex;    //  ·Ö±ðÎª   ²éÑ¯   ²åÈë  ÐÞ¸Ä    É¾³ý
+	Checkbox m,w;   //åˆ†åˆ«ä»£è¡¨  ç”·  å¥³
+	Button b1,b2,b3,b4;  //  åˆ†åˆ«ä¸º   æŸ¥è¯¢   æ’å…¥  ä¿®æ”¹    åˆ é™¤
+	Connection cn;   //ä¸Žæ•°æ®åº“è¿žæŽ¥
+	PreparedStatement cx,cr,xg,sg;  //  åˆ†åˆ«ä¸º   æŸ¥è¯¢   æ’å…¥  ä¿®æ”¹    åˆ é™¤
+	String scx,scr,sxg,ssc,ssex;    //  åˆ†åˆ«ä¸º   æŸ¥è¯¢   æ’å…¥  ä¿®æ”¹    åˆ é™¤
 	String ccx,ccr,cxg,csc;
 	String sccx,sccr,scxg,scsc;
 	
 	Adm()
 	{
-		String JDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";// SQLÊý¾Ý¿âÒýÇæ	    
+		String JDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";// SQLæ•°æ®åº“å¼•æ“Ž	    
 	    try 
 	     {
-	       Class.forName(JDriver);// ¼ÓÔØÊý¾Ý¿âÒýÇæ£¬·µ»Ø¸ø¶¨×Ö·û´®ÃûµÄÀà
+	       Class.forName(JDriver);// åŠ è½½æ•°æ®åº“å¼•æ“Žï¼Œè¿”å›žç»™å®šå­—ç¬¦ä¸²åçš„ç±»
 	     } 
 	    catch (ClassNotFoundException e) 
 	     {    // e.printStackTrace();
-	          System.out.println("¼ÓÔØÊý¾Ý¿âÒýÇæÊ§°Ü");
+	          System.out.println("åŠ è½½æ•°æ®åº“å¼•æ“Žå¤±è´¥");
 	           System.exit(0);
 	     };
 	      
 	     table=new CheckboxGroup();
-	     student=new Checkbox("student ±í",true,table);  // ±íµÄÑ¡Ôñ
-	     course=new Checkbox("course ±í",false,table);
-	     sc=new Checkbox("sc ±í",false,table);
+	     student=new Checkbox("student è¡¨",true,table);  // è¡¨çš„é€‰æ‹©
+	     course=new Checkbox("course è¡¨",false,table);
+	     sc=new Checkbox("sc è¡¨",false,table);
 	     
-	     s1=new Label("Ñ§ºÅ ");
-	     s2=new Label("ÐÕÃû ");
-	     s3=new Label("ÄêÁä ");
-	     s4=new Label("Ïµ±ð "); //  student  
-	     s5=new Label("ÐÔ±ð");
+	     s1=new Label("å­¦å· ");
+	     s2=new Label("å§“å ");
+	     s3=new Label("å¹´é¾„ ");
+	     s4=new Label("ç³»åˆ« "); //  student  
+	     s5=new Label("æ€§åˆ«");
 	     st1=new TextField(10);
 	     st2=new TextField(10);
 	     st4=new TextField(10);
 	     st5=new TextField(10);
 	     sex=new CheckboxGroup();
-	     m=new Checkbox("ÄÐ",true,sex);
-	     w=new Checkbox("Å®",false,sex);
+	     m=new Checkbox("ç”·",true,sex);
+	     w=new Checkbox("å¥³",false,sex);
 	     
-	     c1=new Label("¿Î³ÌºÅ ");  
-	     c2=new Label("¿Î³ÌÃû ");
-	     c3=new Label("ÏÈÐÐ¿Î  ");  //  course ±í
-	     c4=new Label("Ñ§·Ö ");
+	     c1=new Label("è¯¾ç¨‹å· ");  
+	     c2=new Label("è¯¾ç¨‹å ");
+	     c3=new Label("å…ˆè¡Œè¯¾  ");  //  course è¡¨
+	     c4=new Label("å­¦åˆ† ");
 	     ct1=new TextField(10);
 	     ct2=new TextField(10);
 	     ct3=new TextField(10);
 	     ct4=new TextField(10);
 	     
-	     sc1=new Label("Ñ§ºÅ ");
-	     sc2=new Label("¿Î³ÌºÅ ");  //  SC  ±í
-	     sc3=new Label("³É¼¨ ");
+	     sc1=new Label("å­¦å· ");
+	     sc2=new Label("è¯¾ç¨‹å· ");  //  SC  è¡¨
+	     sc3=new Label("æˆç»© ");
 	     sct1=new TextField(10);
 	     sct2=new TextField(10);
 	     sct3=new TextField(10);
 	     msg=new TextArea(10,80);
 	     mes=new Label("                                    ");
-	     mes1=new Label("ËµÃ÷£º                                                                                                                                                                                                            ");
-	     mes2=new Label("1. ±¾Êý¾Ý¿âÏµÍ³»ùÓÚjavaÓïÑÔ±àÐ´£¬Ê¹ÓÃJDBC¼¼ÊõÊµÏÖÓëSQL Server Á¬½Ó £¬Í¨¹ýEclispe¹¹½¨¿ª·¢Æ½Ì¨¡£ ");
-	     mes3=new Label("2.±¾ÏµÍ³ÔÝÊ±Ö»ÄÜÊµÏÖ²åÈë¹¦ÄÜ£¬¿ÉÒÔ¶ÔÊý¾ÝµÄÓÐÐ§ÐÔ½øÐÐ¼ìÑé¡£¹ØÓÚÆäËûµÄ¹¦ÄÜ»¹ÓÐ´ý¿ª·¢¡£ ²Ù×÷¹ý³ÌÖÐÎÞÐè´ò¿ªSQL Server");		               
-	     mes4=new Label("3.¸ÃÏµÍ³´¦´¦ÌåÏÖÁËÈËÐÔ»¯Éè¼Æ£¬¾ßÓÐÒ»¶¨µÄÊµÓÃÐÔºÍ¿ÉÒÆÖ²ÐÔ¡£")	;                  
-	     msg.setText("»¶Ó­½øÈëÑ§ÉúÐÅÏ¢¹ÜÀíÏµÍ³£¬×£ÄúÓä¿ì£¡O(¡É_¡É)O~"+"\n"+"\n"
-	     +"±¾Êý¾Ý¿â¹ÜÀíÏµÍ³  ²»Ö§³Ö     ¼¶Áª  É¾³ý     É¾³ýÇ°Çë×¢Òâ   Êý¾ÝµÄ  Î¨Ò»ÐÔ £¡£¡%>_<%"+"\n"+"\n"
-	     +"student  Ö§³ÖÓÉÑ§ºÅÐÞ¸ÄÐÕÃû£¬course  Ö§³ÖÓÉ¿Î³ÌºÅÐÞ¸ÄÑ§·Ö£¬sc  Ö§³ÖÓÉÑ§ºÅºÍ¿ÆÄ¿ÐÞ¸Ä·ÖÊý¡£"+"\n"+"\n"
-	     + "student  Ö§³ÖÓÉÑ§ºÅÉ¾³ýÆäËûÏî£¬course  Ö§³ÖÓÉ¿Î³ÌºÅÉ¾³ýÆäËûÏî£¬sc  ÔÝ²»Ö§³ÖÉ¾³ý¹¦ÄÜ¡£");
+	     mes1=new Label("è¯´æ˜Žï¼š                                                                                                                                                                                                            ");
+	     mes2=new Label("1. æœ¬æ•°æ®åº“ç³»ç»ŸåŸºäºŽjavaè¯­è¨€ç¼–å†™ï¼Œä½¿ç”¨JDBCæŠ€æœ¯å®žçŽ°ä¸ŽSQL Server è¿žæŽ¥ ï¼Œé€šè¿‡Eclispeæž„å»ºå¼€å‘å¹³å°ã€‚ ");
+	     mes3=new Label("2.æœ¬ç³»ç»Ÿæš‚æ—¶åªèƒ½å®žçŽ°æ’å…¥åŠŸèƒ½ï¼Œå¯ä»¥å¯¹æ•°æ®çš„æœ‰æ•ˆæ€§è¿›è¡Œæ£€éªŒã€‚å…³äºŽå…¶ä»–çš„åŠŸèƒ½è¿˜æœ‰å¾…å¼€å‘ã€‚ æ“ä½œè¿‡ç¨‹ä¸­æ— éœ€æ‰“å¼€SQL Server");		               
+	     mes4=new Label("3.è¯¥ç³»ç»Ÿå¤„å¤„ä½“çŽ°äº†äººæ€§åŒ–è®¾è®¡ï¼Œå…·æœ‰ä¸€å®šçš„å®žç”¨æ€§å’Œå¯ç§»æ¤æ€§ã€‚")	;                  
+	     msg.setText("æ¬¢è¿Žè¿›å…¥å­¦ç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿï¼Œç¥æ‚¨æ„‰å¿«ï¼O(âˆ©_âˆ©)O~"+"\n"+"\n"
+	     +"æœ¬æ•°æ®åº“ç®¡ç†ç³»ç»Ÿ  ä¸æ”¯æŒ     çº§è”  åˆ é™¤     åˆ é™¤å‰è¯·æ³¨æ„   æ•°æ®çš„  å”¯ä¸€æ€§ ï¼ï¼%>_<%"+"\n"+"\n"
+	     +"student  æ”¯æŒç”±å­¦å·ä¿®æ”¹å§“åï¼Œcourse  æ”¯æŒç”±è¯¾ç¨‹å·ä¿®æ”¹å­¦åˆ†ï¼Œsc  æ”¯æŒç”±å­¦å·å’Œç§‘ç›®ä¿®æ”¹åˆ†æ•°ã€‚"+"\n"+"\n"
+	     + "student  æ”¯æŒç”±å­¦å·åˆ é™¤å…¶ä»–é¡¹ï¼Œcourse  æ”¯æŒç”±è¯¾ç¨‹å·åˆ é™¤å…¶ä»–é¡¹ï¼Œsc  æš‚ä¸æ”¯æŒåˆ é™¤åŠŸèƒ½ã€‚");
 	     
-	     b1=new Button("²éÑ¯");
-	     b2=new Button("²åÈë");  //  ²Ù×÷²¼¾Ö
-	     b3=new Button("ÐÞ¸Ä");
-	     b4=new Button("É¾³ý");
+	     b1=new Button("æŸ¥è¯¢");
+	     b2=new Button("æ’å…¥");  //  æ“ä½œå¸ƒå±€
+	     b3=new Button("ä¿®æ”¹");
+	     b4=new Button("åˆ é™¤");
 	     
-	     p1=new Panel();  //  ÈÝÆ÷¹¹Ôì
+	     p1=new Panel();  //  å®¹å™¨æž„é€ 
 	     p2=new Panel();
 	     p3=new Panel();
 	     p4=new Panel();
@@ -107,23 +107,23 @@ class Adm extends Frame
 	     p1.add(s3); p1.add(st4);
 	     p1.add(s4); p1.add(st5);
 	     p1.add(s5);
-	     p1.add(m);     //   p1  ÈÝÆ÷
+	     p1.add(m);     //   p1  å®¹å™¨
 	     p1.add(w);
 	     
 	     p2.add(course);
 	     p2.add(c1); p2.add(ct1);
 	     p2.add(c2); p2.add(ct2);
 	     p2.add(c3); p2.add(ct3);
-	     p2.add(c4);  p2.add(ct4);  //  p2 ÈÝÆ÷
+	     p2.add(c4);  p2.add(ct4);  //  p2 å®¹å™¨
     
 	     p3.add(sc);
-	     p3.add(sc1); p3.add(sct1);   // p3  ÈÝÆ÷
+	     p3.add(sc1); p3.add(sct1);   // p3  å®¹å™¨
 	     p3.add(sc2); p3.add(sct2);
 	     p3.add(sc3); p3.add(sct3);
 	     p3.add(mes);
 	     
 	     p4.add(b1);
-	     p4.add(b2);  //   p4 ÈÝÆ÷
+	     p4.add(b2);  //   p4 å®¹å™¨
 	     p4.add(b3);
 	     p4.add(b4);
 	     p5.add(msg);
@@ -132,9 +132,9 @@ class Adm extends Frame
 	     p8.add(mes3);
 	     p9.add(mes4);
 	     
-	     setLayout(new FlowLayout(0,8,8));   //²¼¾Ö¹¹Ôì
+	     setLayout(new FlowLayout(0,8,8));   //å¸ƒå±€æž„é€ 
 	     add(p1);
-	     add(p2);    // Ìí¼ÓÈÝÆ÷µ½µ±Ç°²¼¾Ö
+	     add(p2);    // æ·»åŠ å®¹å™¨åˆ°å½“å‰å¸ƒå±€
 	     add(p3);
 	     add(p4);
 	     add(p5);
@@ -144,13 +144,13 @@ class Adm extends Frame
 	     add(p9);
 	    
 	     b1.addActionListener(new B1());
-	     b2.addActionListener(new B2());  // Îª°´Å¥´´½¨ÊÂ¼þ
+	     b2.addActionListener(new B2());  // ä¸ºæŒ‰é’®åˆ›å»ºäº‹ä»¶
 	     b3.addActionListener(new B3());
 	     b4.addActionListener(new B4());
 	     
 	     addWindowListener(new WinClose());
 	     setSize(800,560);
-	     setTitle("Ñ§ÉúÐÅÏ¢¹ÜÀíÏµÍ³");
+	     setTitle("å­¦ç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿ");
 	     setVisible(true);
 	}
 	
@@ -163,10 +163,10 @@ class Adm extends Frame
 			{					
 	    	 try 
 			     {
-					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 				    String user = "sa";
 			        String password = "sa";
-			        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+			        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 			        Statement stmt;
 					ResultSet  rs;
 					stmt=cn.createStatement();					   					 					    					 
@@ -175,12 +175,12 @@ class Adm extends Frame
 			       {
 			         System.out.println(rs.getString("sno")+"  "+rs.getString("sname")+
 			       "  "+rs.getString("ssex")+"  "+rs.getInt("sage")+"  "+rs.getString("sdept"));
-			         msg.setText("Êý¾Ý²éÑ¯³É¹¦£¬ÒÑ¾­ÏÔÊ¾ÔÚ     ¿ØÖÆÌ¨´°¿Ú£¡");
+			         msg.setText("æ•°æ®æŸ¥è¯¢æˆåŠŸï¼Œå·²ç»æ˜¾ç¤ºåœ¨     æŽ§åˆ¶å°çª—å£ï¼");
 			       };				       						
 			       }
 			     catch (SQLException e1) 
 			     {
-			    	System.out.println("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+			    	System.out.println("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 			        System.exit(0);
 			     };					     				 
 			}
@@ -188,10 +188,10 @@ class Adm extends Frame
 	     {					
 	    	 try 
 		     {
-				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 			    String user = "sa";
 		        String password = "sa";
-		        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+		        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 		        Statement stmt;
 				ResultSet  rs;
 				stmt=cn.createStatement();					   					 					    					 
@@ -200,12 +200,12 @@ class Adm extends Frame
 		       {
 		         System.out.println(rs.getString("cno")+"  "+rs.getString("cname")+"  "+
 		    	 rs.getString("cpno")+"  "+rs.getString("ccredit"));
-		         msg.setText("Êý¾Ý²éÑ¯³É¹¦£¬ÒÑ¾­ÏÔÊ¾ÔÚ     ¿ØÖÆÌ¨´°¿Ú£¡");
+		         msg.setText("æ•°æ®æŸ¥è¯¢æˆåŠŸï¼Œå·²ç»æ˜¾ç¤ºåœ¨     æŽ§åˆ¶å°çª—å£ï¼");
 		       };				       						
 		       }
 		     catch (SQLException e1) 
 		     {
-		    	System.out.println("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+		    	System.out.println("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 		        System.exit(0);
 		     };					     				 
 		}
@@ -213,10 +213,10 @@ class Adm extends Frame
 	     {					
 	    	 try 
 		     {
-				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 			    String user = "sa";
 		        String password = "sa";
-		        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+		        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 		        Statement stmt;
 				ResultSet  rs;
 				stmt=cn.createStatement();					   					 					    					 
@@ -225,12 +225,12 @@ class Adm extends Frame
 		       {
 		         System.out.println(rs.getString("sno")+"  "+rs.getString("cno")+"  "
 		        +rs.getString("grade"));
-		         msg.setText("Êý¾Ý²éÑ¯³É¹¦£¬ÒÑ¾­ÏÔÊ¾ÔÚ     ¿ØÖÆÌ¨´°¿Ú£¡");
+		         msg.setText("æ•°æ®æŸ¥è¯¢æˆåŠŸï¼Œå·²ç»æ˜¾ç¤ºåœ¨     æŽ§åˆ¶å°çª—å£ï¼");
 		       };				       						
 		       }
 		     catch (SQLException e1) 
 		     {
-		    	System.out.println("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+		    	System.out.println("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 		        System.exit(0);
 		     };					     				
 		 }			    	 				    		    
@@ -245,41 +245,41 @@ class Adm extends Frame
 		{
 				try 
 		     {
-				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 			    String user = "sa";
 		        String password = "sa";
-		        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+		        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 		        scr="INSERT INTO student VALUES(?,?,?,?,?)" ;
 				cr=cn.prepareStatement(scr);
-				msg.setText("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+				msg.setText("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 		     }
 		     catch (SQLException e1) 
 		     {
-		    	 System.out.print("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+		    	 System.out.print("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 		        System.exit(0);
 		     };
 			 try 
 			     {
-			       cr.setString(1, st1.getText());  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+			       cr.setString(1, st1.getText());  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 			       cr.setString(2, st2.getText());
 			       if(m.getState())
-			    	   ssex="ÄÐ";
+			    	   ssex="ç”·";
 			       else
-			    	   ssex="Å®";
+			    	   ssex="å¥³";
 			       cr.setString(3, ssex);
 			       cr.setInt(4, Integer.parseInt(st4.getText()));
 			       cr.setString(5, st5.getText());
 			       cr.executeUpdate();
-			       msg.setText("²åÈëÊý¾Ý³É¹¦");
+			       msg.setText("æ’å…¥æ•°æ®æˆåŠŸ");
 			       st1.setText("");
-			       st2.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò
+			       st2.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†
 			       st4.setText("");
 			       st5.setText("");
 			       st1.requestFocus();			       
 			     } 
 			  catch (Exception s2) 
 			     {    
-			    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+			    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 			    	 st1.requestFocus();
 			     };
 		}
@@ -287,36 +287,36 @@ class Adm extends Frame
 			{
 				try 
 			     {
-					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 				    String user = "sa";
 			        String password = "sa";
-			        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+			        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 			        ccr="INSERT INTO course VALUES(?,?,?,?)" ;
 					cr=cn.prepareStatement(ccr);
-					System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+					System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 			     }
 			     catch (SQLException e1) 
 			     {
-			    	 msg.setText("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+			    	 msg.setText("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 			        System.exit(0);
 			     };
 				 try 
 				     {
-					   cr.setInt(1, Integer.parseInt(ct1.getText()));  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+					   cr.setInt(1, Integer.parseInt(ct1.getText()));  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 				       cr.setString(2, ct2.getText());				
 				       cr.setString(3, ct3.getText());
 				       cr.setString(4, ct4.getText());
 				       cr.executeUpdate();
-				       msg.setText("²åÈëÊý¾Ý³É¹¦");
+				       msg.setText("æ’å…¥æ•°æ®æˆåŠŸ");
 				       ct1.setText("");
-				       ct2.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò
+				       ct2.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†
 				       ct3.setText("");
 				       ct4.setText("");
 				       ct1.requestFocus();			       
 				     } 
 				  catch (Exception e2) 
 				     {    
-				    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+				    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 				    	 ct1.requestFocus();
 				     };
 			}
@@ -324,34 +324,34 @@ class Adm extends Frame
 			{
 					try 
 			     {
-					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 				    String user = "sa";
 			        String password = "sa";
-			        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+			        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 			        sccr="INSERT INTO sc VALUES(?,?,?)" ;
 					cr=cn.prepareStatement(sccr);
-					System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+					System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 			     }
 			     catch (SQLException e1) 
 			     {
-			    	 msg.setText("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+			    	 msg.setText("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 			        System.exit(0);
 			     };
 				 try 
 				     {
-				       cr.setString(1, sct1.getText());  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+				       cr.setString(1, sct1.getText());  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 				       cr.setInt(2, Integer.parseInt(sct2.getText()));				       
 				       cr.setInt(3, Integer.parseInt(sct3.getText()));				       
 				       cr.executeUpdate();
-				       msg.setText("²åÈëÊý¾Ý³É¹¦");
+				       msg.setText("æ’å…¥æ•°æ®æˆåŠŸ");
 				       sct1.setText("");
-				       sct2.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò
+				       sct2.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†
 				       sct3.setText("");				      
 				       sct1.requestFocus();			       
 				     } 
 				  catch (Exception e2) 
 				     {    
-				    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+				    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 				    	 sct1.requestFocus();
 				     };				
 			}
@@ -366,34 +366,34 @@ class Adm extends Frame
 					{					
 			    	 try 
 					     {
-							String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+							String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 						    String user = "sa";
 					        String password = "sa";
-					        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+					        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 					        sxg="UPDATE student SET sname=? WHERE sno=?" ;
 							xg=cn.prepareStatement(sxg);
-							System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+							System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 					     }
 					     catch (SQLException e1) 
 					     {
-					    	 msg.setText("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+					    	 msg.setText("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 					        System.exit(0);
 					     };					     
 						 try 
 						     {
-						       xg.setString(1, st2.getText());  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+						       xg.setString(1, st2.getText());  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 						       xg.setString(2, st1.getText());
 						       xg.executeUpdate();
-						       msg.setText("ÐÞ¸ÄÊý¾Ý³É¹¦!");						       
+						       msg.setText("ä¿®æ”¹æ•°æ®æˆåŠŸ!");						       
 						       st1.setText("");
-						       st2.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò	
+						       st2.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†	
 						       st4.setText("");
 						       st5.setText("");
 						       st1.requestFocus();			       
 						     } 
 						  catch (Exception s2) 
 						     {    
-						    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+						    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 						    	 st1.requestFocus();
 						     };
 					}
@@ -401,34 +401,34 @@ class Adm extends Frame
 			     {					
 			    	 try 
 					     {
-							String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+							String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 						    String user = "sa";
 					        String password = "sa";
-					        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+					        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 					        cxg="UPDATE course SET ccredit=? WHERE cno=?" ;
 							xg=cn.prepareStatement(cxg);
-							System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+							System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 					     }
 					     catch (SQLException e1) 
 					     {
-					    	 msg.setText("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+					    	 msg.setText("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 					        System.exit(0);
 					     };					     
 						 try 
 						     {
-						       xg.setString(1, ct4.getText());  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+						       xg.setString(1, ct4.getText());  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 						       xg.setString(2, ct1.getText());
 						       xg.executeUpdate();
-						       msg.setText("ÐÞ¸ÄÊý¾Ý³É¹¦!");						       
+						       msg.setText("ä¿®æ”¹æ•°æ®æˆåŠŸ!");						       
 						       ct1.setText("");
 						       ct2.setText("");
 						       ct3.setText("");
-						       ct4.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò						       
+						       ct4.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†						       
 						       ct1.requestFocus();			       
 						     } 
 						  catch (Exception s2) 
 						     {    
-						    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+						    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 						    	 ct1.requestFocus();
 						     };
 					}
@@ -436,34 +436,34 @@ class Adm extends Frame
 			     {					
 			    	 try 
 					     {
-							String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+							String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 						    String user = "sa";
 					        String password = "sa";
-					        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+					        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 					        scxg="UPDATE sc SET grade=? WHERE sno=? AND cno=?" ;
 							xg=cn.prepareStatement(scxg);
-							System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+							System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 					     }
 					     catch (SQLException e1) 
 					     {
-					    	 msg.setText("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+					    	 msg.setText("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 					        System.exit(0);
 					     };					     
 						 try 
 						     {
-						       xg.setString(1, sct3.getText());  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+						       xg.setString(1, sct3.getText());  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 						       xg.setString(2, sct1.getText());
 						       xg.setString(3, sct2.getText());
 						       xg.executeUpdate();
-						       msg.setText("ÐÞ¸ÄÊý¾Ý³É¹¦!");						       
+						       msg.setText("ä¿®æ”¹æ•°æ®æˆåŠŸ!");						       
 						       sct1.setText("");
 						       sct2.setText("");
-						       sct3.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò						       
+						       sct3.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†						       
 						       sct1.requestFocus();			       
 						     } 
 						  catch (Exception s2) 
 						     {    
-						    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+						    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 						    	 sct1.requestFocus();
 						     };
 					}			    	 			     
@@ -478,31 +478,31 @@ class Adm extends Frame
 				{					
 		    	 try 
 				     {
-						String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+						String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 					    String user = "sa";
 				        String password = "sa";
-				        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+				        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 				        ssc="DELETE FROM student WHERE sno=?" ;
 						sg=cn.prepareStatement(ssc);
-						System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+						System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 				     }
 				     catch (SQLException e1) 
 				     {
-				    	 System.out.print("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+				    	 System.out.print("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 				        System.exit(0);
 				     };					     
 					 try 
 					     {					         
-					       sg.setString(1, st1.getText());  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+					       sg.setString(1, st1.getText());  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 					       sg.executeUpdate();
-					       msg.setText("É¾³ýÊý¾Ý³É¹¦!");						       
+					       msg.setText("åˆ é™¤æ•°æ®æˆåŠŸ!");						       
 					       st1.setText("");
-					       st2.setText("");  //Çå¿Õ¸÷ÊäÈë¿ò						       
+					       st2.setText("");  //æ¸…ç©ºå„è¾“å…¥æ¡†						       
 					       st1.requestFocus();			       
 					     } 
 					  catch (Exception s2) 
 					     {    
-					    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+					    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 					    	 st1.requestFocus();
 					     };
 				}
@@ -510,39 +510,39 @@ class Adm extends Frame
 		     {					
 		    	 try 
 			     {
-					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Ñ§Éú¿Î³Ì¹ÜÀí";// Êý¾ÝÔ´
+					String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=å­¦ç”Ÿè¯¾ç¨‹ç®¡ç†";// æ•°æ®æº
 				    String user = "sa";
 			        String password = "sa";
-			        Connection cn = DriverManager.getConnection(connectDB, user, password);// Á¬½ÓÊý¾Ý¿â¶ÔÏó
+			        Connection cn = DriverManager.getConnection(connectDB, user, password);// è¿žæŽ¥æ•°æ®åº“å¯¹è±¡
 			        csc="DELETE FROM course WHERE cno=?" ;
 					sg=cn.prepareStatement(csc);
-					System.out.print("Á¬½ÓÊý¾Ý¿â³É¹¦"+"\n");
+					System.out.print("è¿žæŽ¥æ•°æ®åº“æˆåŠŸ"+"\n");
 			     }
 			     catch (SQLException e1) 
 			     {
-			    	 System.out.print("Êý¾Ý¿âÁ¬½Ó´íÎó"+"\n");
+			    	 System.out.print("æ•°æ®åº“è¿žæŽ¥é”™è¯¯"+"\n");
 			        System.exit(0);
 			     };					     
 				 try 
 				     {					         
-				       sg.setInt(1, Integer.parseInt(ct1.getText()));  //ÎªSQLÓï¾ä²ÎÊý¸³Öµ
+				       sg.setInt(1, Integer.parseInt(ct1.getText()));  //ä¸ºSQLè¯­å¥å‚æ•°èµ‹å€¼
 				       sg.executeUpdate();
-				       msg.setText("É¾³ýÊý¾Ý³É¹¦!");						       
+				       msg.setText("åˆ é™¤æ•°æ®æˆåŠŸ!");						       
 				       ct1.setText("");
 				       ct2.setText(""); 
 				       ct3.setText("");
-				       ct4.setText("");//Çå¿Õ¸÷ÊäÈë¿ò						       
+				       ct4.setText("");//æ¸…ç©ºå„è¾“å…¥æ¡†						       
 				       ct1.requestFocus();			       
 				     } 
 				  catch (Exception s2) 
 				     {    
-				    	 msg.setText("ÊäÈëÊý¾ÝÓÐÎó£¡");
+				    	 msg.setText("è¾“å…¥æ•°æ®æœ‰è¯¯ï¼");
 				    	 ct1.requestFocus();
 				     };
 			 }
 		      else
 		      {
-		    	 msg.setText(" ¶Ô²»Æð£¬ÔÝ²»Ö§³Ö¶Ô  SC ±í½øÐÐÉ¾³ý²Ù×÷£¡");
+		    	 msg.setText(" å¯¹ä¸èµ·ï¼Œæš‚ä¸æ”¯æŒå¯¹  SC è¡¨è¿›è¡Œåˆ é™¤æ“ä½œï¼");
 		      }
 			}
 		}
